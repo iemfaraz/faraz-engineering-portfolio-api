@@ -1,0 +1,2774 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Faraz Engineering Portfolio API",
+    "description": "API documentation for the **Faraz Engineering Portfolio** application.\n\n**Authentication:** Most endpoints require the `api_key` header. If using Swagger UI, click the **Authorize** button at the top of the page and enter your API key before trying any endpoint.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://faraz-nawaz-electrical-engineer-portfolio.base44.app/api",
+      "description": "API server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/entities/Recommendation": {
+      "get": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "List Recommendation records",
+        "operationId": "list_Recommendation",
+        "description": "Retrieve a list of Recommendation records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recommendation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Create a Recommendation record",
+        "operationId": "create_Recommendation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recommendation"
+              },
+              "example": {
+                "name": "Example name",
+                "message": "Example message",
+                "status": "pending"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recommendation"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Delete multiple Recommendation records",
+        "operationId": "delete_many_Recommendation",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "name": "Example name"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Recommendation/bulk": {
+      "post": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Bulk create Recommendation records",
+        "operationId": "bulk_create_Recommendation",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Recommendation"
+                }
+              },
+              "example": [
+                {
+                  "name": "Example name",
+                  "message": "Example message",
+                  "status": "pending"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recommendation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Bulk update Recommendation records",
+        "operationId": "bulk_update_Recommendation",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Recommendation"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "name": "Example name",
+                  "message": "Example message",
+                  "status": "pending"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recommendation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Recommendation/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Update many Recommendation records by query",
+        "operationId": "update_many_Recommendation",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "name": "Example name"
+                },
+                "data": {
+                  "$set": {
+                    "name": "Example name"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Recommendation/{Recommendation_id}": {
+      "get": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Get a Recommendation record by ID",
+        "operationId": "get_Recommendation",
+        "parameters": [
+          {
+            "name": "Recommendation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recommendation"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Update a Recommendation record",
+        "operationId": "update_Recommendation",
+        "parameters": [
+          {
+            "name": "Recommendation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recommendation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recommendation"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Delete a Recommendation record",
+        "operationId": "delete_Recommendation",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "Recommendation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Recommendation/{Recommendation_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - Recommendation"
+        ],
+        "summary": "Restore a deleted Recommendation record",
+        "operationId": "restore_Recommendation",
+        "parameters": [
+          {
+            "name": "Recommendation_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recommendation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TextOverride": {
+      "get": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "List TextOverride records",
+        "operationId": "list_TextOverride",
+        "description": "Retrieve a list of TextOverride records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TextOverride"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Create a TextOverride record",
+        "operationId": "create_TextOverride",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TextOverride"
+              },
+              "example": {
+                "path": "Example path",
+                "lang": "en",
+                "value": "Example value"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextOverride"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Delete multiple TextOverride records",
+        "operationId": "delete_many_TextOverride",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "path": "Example path"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TextOverride/bulk": {
+      "post": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Bulk create TextOverride records",
+        "operationId": "bulk_create_TextOverride",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TextOverride"
+                }
+              },
+              "example": [
+                {
+                  "path": "Example path",
+                  "lang": "en",
+                  "value": "Example value"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TextOverride"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Bulk update TextOverride records",
+        "operationId": "bulk_update_TextOverride",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TextOverride"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "path": "Example path",
+                  "lang": "en",
+                  "value": "Example value"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TextOverride"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TextOverride/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Update many TextOverride records by query",
+        "operationId": "update_many_TextOverride",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "path": "Example path"
+                },
+                "data": {
+                  "$set": {
+                    "path": "Example path"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TextOverride/{TextOverride_id}": {
+      "get": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Get a TextOverride record by ID",
+        "operationId": "get_TextOverride",
+        "parameters": [
+          {
+            "name": "TextOverride_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextOverride"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Update a TextOverride record",
+        "operationId": "update_TextOverride",
+        "parameters": [
+          {
+            "name": "TextOverride_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TextOverride"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextOverride"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Delete a TextOverride record",
+        "operationId": "delete_TextOverride",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "TextOverride_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/TextOverride/{TextOverride_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - TextOverride"
+        ],
+        "summary": "Restore a deleted TextOverride record",
+        "operationId": "restore_TextOverride",
+        "parameters": [
+          {
+            "name": "TextOverride_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TextOverride"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/CvVersion": {
+      "get": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "List CvVersion records",
+        "operationId": "list_CvVersion",
+        "description": "Retrieve a list of CvVersion records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CvVersion"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Create a CvVersion record",
+        "operationId": "create_CvVersion",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CvVersion"
+              },
+              "example": {
+                "lang": "Example lang",
+                "content": "Example content"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CvVersion"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Delete multiple CvVersion records",
+        "operationId": "delete_many_CvVersion",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "lang": "Example lang"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/CvVersion/bulk": {
+      "post": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Bulk create CvVersion records",
+        "operationId": "bulk_create_CvVersion",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CvVersion"
+                }
+              },
+              "example": [
+                {
+                  "lang": "Example lang",
+                  "content": "Example content"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CvVersion"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Bulk update CvVersion records",
+        "operationId": "bulk_update_CvVersion",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CvVersion"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "lang": "Example lang",
+                  "content": "Example content"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CvVersion"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/CvVersion/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Update many CvVersion records by query",
+        "operationId": "update_many_CvVersion",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "lang": "Example lang"
+                },
+                "data": {
+                  "$set": {
+                    "lang": "Example lang"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/CvVersion/{CvVersion_id}": {
+      "get": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Get a CvVersion record by ID",
+        "operationId": "get_CvVersion",
+        "parameters": [
+          {
+            "name": "CvVersion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CvVersion"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Update a CvVersion record",
+        "operationId": "update_CvVersion",
+        "parameters": [
+          {
+            "name": "CvVersion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CvVersion"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CvVersion"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Delete a CvVersion record",
+        "operationId": "delete_CvVersion",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "CvVersion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/CvVersion/{CvVersion_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - CvVersion"
+        ],
+        "summary": "Restore a deleted CvVersion record",
+        "operationId": "restore_CvVersion",
+        "parameters": [
+          {
+            "name": "CvVersion_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CvVersion"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/MediaItem": {
+      "get": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "List MediaItem records",
+        "operationId": "list_MediaItem",
+        "description": "Retrieve a list of MediaItem records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MediaItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Create a MediaItem record",
+        "operationId": "create_MediaItem",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MediaItem"
+              },
+              "example": {
+                "kind": "intro_video",
+                "url": "Example url"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaItem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Delete multiple MediaItem records",
+        "operationId": "delete_many_MediaItem",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "kind": "intro_video"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/MediaItem/bulk": {
+      "post": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Bulk create MediaItem records",
+        "operationId": "bulk_create_MediaItem",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MediaItem"
+                }
+              },
+              "example": [
+                {
+                  "kind": "intro_video",
+                  "url": "Example url"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MediaItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Bulk update MediaItem records",
+        "operationId": "bulk_update_MediaItem",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/MediaItem"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "kind": "intro_video",
+                  "url": "Example url"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MediaItem"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/MediaItem/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Update many MediaItem records by query",
+        "operationId": "update_many_MediaItem",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "kind": "intro_video"
+                },
+                "data": {
+                  "$set": {
+                    "kind": "intro_video"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/MediaItem/{MediaItem_id}": {
+      "get": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Get a MediaItem record by ID",
+        "operationId": "get_MediaItem",
+        "parameters": [
+          {
+            "name": "MediaItem_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaItem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Update a MediaItem record",
+        "operationId": "update_MediaItem",
+        "parameters": [
+          {
+            "name": "MediaItem_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MediaItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaItem"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Delete a MediaItem record",
+        "operationId": "delete_MediaItem",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "MediaItem_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/MediaItem/{MediaItem_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - MediaItem"
+        ],
+        "summary": "Restore a deleted MediaItem record",
+        "operationId": "restore_MediaItem",
+        "parameters": [
+          {
+            "name": "MediaItem_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaItem"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Project": {
+      "get": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "List Project records",
+        "operationId": "list_Project",
+        "description": "Retrieve a list of Project records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Create a Project record",
+        "operationId": "create_Project",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Project"
+              },
+              "example": {
+                "slug": "Example slug",
+                "cat": "gov",
+                "title_en": "Example title_en"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Delete multiple Project records",
+        "operationId": "delete_many_Project",
+        "description": "**Warning:** Passing an empty `{}` query will delete ALL records in this entity.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "Query filter to match records to delete"
+              },
+              "example": {
+                "slug": "Example slug"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "deleted": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Project/bulk": {
+      "post": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Bulk create Project records",
+        "operationId": "bulk_create_Project",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              },
+              "example": [
+                {
+                  "slug": "Example slug",
+                  "cat": "gov",
+                  "title_en": "Example title_en"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of created records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Bulk update Project records",
+        "operationId": "bulk_update_Project",
+        "description": "Each item must include an 'id' field along with the fields to update.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              },
+              "example": [
+                {
+                  "id": "<record_id>",
+                  "slug": "Example slug",
+                  "cat": "gov",
+                  "title_en": "Example title_en"
+                }
+              ]
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "List of updated records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Project"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Project/update-many": {
+      "patch": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Update many Project records by query",
+        "operationId": "update_many_Project",
+        "description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "query",
+                  "data"
+                ],
+                "properties": {
+                  "query": {
+                    "type": "object",
+                    "description": "Query filter to match records"
+                  },
+                  "data": {
+                    "type": "object",
+                    "description": "Update operations to apply"
+                  }
+                }
+              },
+              "example": {
+                "query": {
+                  "slug": "Example slug"
+                },
+                "data": {
+                  "$set": {
+                    "slug": "Example slug"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Update result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "updated": {
+                      "type": "integer"
+                    },
+                    "has_more": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Project/{Project_id}": {
+      "get": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Get a Project record by ID",
+        "operationId": "get_Project",
+        "parameters": [
+          {
+            "name": "Project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Update a Project record",
+        "operationId": "update_Project",
+        "parameters": [
+          {
+            "name": "Project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Project"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Delete a Project record",
+        "operationId": "delete_Project",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "Project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/Project/{Project_id}/restore": {
+      "put": {
+        "tags": [
+          "Entities - Project"
+        ],
+        "summary": "Restore a deleted Project record",
+        "operationId": "restore_Project",
+        "parameters": [
+          {
+            "name": "Project_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restored record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/User": {
+      "get": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "List User records",
+        "operationId": "list_User",
+        "description": "Retrieve a list of User records with optional filtering, sorting, and pagination.",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "JSON query filter, e.g. {\"status\":\"active\"}"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 100
+            },
+            "description": "Maximum number of records to return"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 0
+            },
+            "description": "Number of records to skip (pagination)"
+          },
+          {
+            "name": "sort_by",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "Create a User record",
+        "operationId": "create_User",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "example": {
+                "email": "Example email",
+                "full_name": "Example full_name",
+                "role": "admin"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Created record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/entities/User/{User_id}": {
+      "get": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "Get a User record by ID",
+        "operationId": "get_User",
+        "parameters": [
+          {
+            "name": "User_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "Update a User record",
+        "operationId": "update_User",
+        "parameters": [
+          {
+            "name": "User_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated record",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Entities - User"
+        ],
+        "summary": "Delete a User record",
+        "operationId": "delete_User",
+        "description": "Soft-deletes the record. Use the restore endpoint to undo.",
+        "parameters": [
+          {
+            "name": "User_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Record ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletion result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "api_key",
+        "description": "Your API key. Obtain it from your user profile or via `User.me()` in the app SDK."
+      }
+    },
+    "schemas": {
+      "Recommendation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the person writing the recommendation"
+          },
+          "job_title": {
+            "type": "string",
+            "description": "Their job title"
+          },
+          "company": {
+            "type": "string",
+            "description": "Their company"
+          },
+          "relation": {
+            "type": "string",
+            "description": "How they worked with Faraz"
+          },
+          "message": {
+            "type": "string",
+            "description": "The recommendation text"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ],
+            "description": "Review state — only approved recommendations are published",
+            "default": "pending"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "name",
+          "message",
+          "status"
+        ],
+        "description": "Endorsements submitted by engineers, consultants, contractors and clients. Published only after review."
+      },
+      "TextOverride": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "Dot path into the content object, e.g. hero.lead or projects.items.0.title"
+          },
+          "lang": {
+            "type": "string",
+            "enum": [
+              "en",
+              "ar"
+            ],
+            "description": "Language this override belongs to",
+            "default": "en"
+          },
+          "value": {
+            "type": "string",
+            "description": "The replacement text"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "path",
+          "lang",
+          "value"
+        ],
+        "description": "Section-by-section text overrides for the portfolio, keyed by content path and language. Empty means the built-in default is used."
+      },
+      "CvVersion": {
+        "type": "object",
+        "properties": {
+          "lang": {
+            "type": "string",
+            "description": "Language of this version",
+            "default": "ar"
+          },
+          "source_url": {
+            "type": "string",
+            "description": "The English PDF this version was written from"
+          },
+          "source_title": {
+            "type": "string",
+            "description": "File name of the English PDF"
+          },
+          "content": {
+            "type": "string",
+            "description": "JSON: name, title, contact and sections of the Arabic CV"
+          },
+          "translated_at": {
+            "type": "string",
+            "description": "When the Arabic version was generated",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "lang",
+          "content"
+        ],
+        "description": "The Arabic version of the CV, written automatically from the English PDF uploaded in the dashboard and used for the Arabic download."
+      },
+      "MediaItem": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "intro_video",
+              "drawing",
+              "drawing_cover",
+              "project_cover",
+              "project_video",
+              "cv"
+            ],
+            "description": "What this file is used for",
+            "default": "drawing"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Project slug this file belongs to (project covers and videos)"
+          },
+          "title": {
+            "type": "string",
+            "description": "Name shown for the file"
+          },
+          "note": {
+            "type": "string",
+            "description": "Optional one-line description"
+          },
+          "url": {
+            "type": "string",
+            "description": "Public file URL or external video link"
+          },
+          "order": {
+            "type": "number",
+            "description": "Sort position"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "kind",
+          "url"
+        ],
+        "description": "The intro video, CV file, drawing sheet section cover, project cover photos, project videos and project drawing files shown on the portfolio, managed from the dashboard."
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string",
+            "description": "URL id of the project page, e.g. padel-lighting"
+          },
+          "order": {
+            "type": "number",
+            "description": "Sort position, lower first"
+          },
+          "cat": {
+            "type": "string",
+            "enum": [
+              "gov",
+              "res",
+              "ind",
+              "elv",
+              "light"
+            ],
+            "description": "Project category",
+            "default": "gov"
+          },
+          "title_en": {
+            "type": "string",
+            "description": "Project name in English"
+          },
+          "title_ar": {
+            "type": "string",
+            "description": "Project name in Arabic (English is used when empty)"
+          },
+          "summary_en": {
+            "type": "string",
+            "description": "One or two lines describing the work, in English"
+          },
+          "summary_ar": {
+            "type": "string",
+            "description": "Summary in Arabic (English is used when empty)"
+          },
+          "tags": {
+            "type": "string",
+            "description": "Comma separated tags, e.g. Power, Lighting, ELV"
+          },
+          "engagement": {
+            "type": "string",
+            "description": "Employer or consultancy and city"
+          },
+          "office": {
+            "type": "string",
+            "description": "Mode of work, e.g. Design office or Site team"
+          },
+          "period": {
+            "type": "string",
+            "description": "Years, e.g. 2025 — 2026"
+          },
+          "disciplines": {
+            "type": "string",
+            "description": "Comma separated disciplines"
+          },
+          "standards": {
+            "type": "string",
+            "description": "Comma separated standards, e.g. SBC, IEC"
+          },
+          "scope_en": {
+            "type": "string",
+            "description": "Scope delivered in English, one item per line"
+          },
+          "scope_ar": {
+            "type": "string",
+            "description": "Scope delivered in Arabic, one item per line (English is used when empty)"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "slug",
+          "cat",
+          "title_en"
+        ],
+        "description": "Portfolio projects added from the dashboard. They appear after the built-in projects on the site, with their own page, cover and video."
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "The email of the user"
+          },
+          "full_name": {
+            "type": "string",
+            "description": "The full name of the user"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "admin",
+              "user"
+            ],
+            "description": "The role of the user in the app"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique record identifier"
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "updated_date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Record last update timestamp"
+          },
+          "created_by_id": {
+            "type": "string",
+            "description": "ID of the user who created the record"
+          }
+        },
+        "required": [
+          "email",
+          "full_name",
+          "role"
+        ],
+        "description": "User entity"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Entities - Recommendation",
+      "description": "CRUD operations for Recommendation records"
+    },
+    {
+      "name": "Entities - TextOverride",
+      "description": "CRUD operations for TextOverride records"
+    },
+    {
+      "name": "Entities - CvVersion",
+      "description": "CRUD operations for CvVersion records"
+    },
+    {
+      "name": "Entities - MediaItem",
+      "description": "CRUD operations for MediaItem records"
+    },
+    {
+      "name": "Entities - Project",
+      "description": "CRUD operations for Project records"
+    },
+    {
+      "name": "Entities - User",
+      "description": "CRUD operations for User records"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Faraz Engineering Portfolio API documentation">
+  <title>Faraz Engineering Portfolio API</title>
+  <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css">
+  <style>
+    body { margin: 0; background: #f5f7fb; }
+    .topbar { display: none; }
+    .page-header { background: #101c35; color: white; padding: 22px 24px; }
+    .page-header h1 { margin: 0 0 6px; font: 700 24px/1.25 system-ui, sans-serif; }
+    .page-header p { margin: 0; color: #d7e1f4; font: 14px/1.5 system-ui, sans-serif; }
+    #swagger-ui { max-width: 1240px; margin: 0 auto; }
+    .notice { max-width: 1190px; margin: 16px auto 0; padding: 12px 16px; background: #fff7e6; border-left: 4px solid #d97706; color: #6b4300; font: 14px/1.5 system-ui, sans-serif; }
+    @media (max-width: 700px) { .page-header h1 { font-size: 20px; } .notice { margin: 12px; } }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <h1>Faraz Engineering Portfolio API</h1>
+    <p>API reference and interactive endpoint explorer</p>
+  </header>
+  <div class="notice">
+    Authentication is required for most endpoints. Click <strong>Authorize</strong> and enter your API key only if you trust this page.
+    The backend is hosted by the API provider; this page does not host the API.
+  </div>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js"></script>
+  <script>
+    window.onload = function () {
+      window.ui = SwaggerUIBundle({
+        url: "./openapi.json",
+        dom_id: "#swagger-ui",
+        deepLinking: true,
+        displayRequestDuration: true,
+        persistAuthorization: false,
+        tryItOutEnabled: true,
+        presets: [SwaggerUIBundle.presets.apis],
+        layout: "BaseLayout"
+      });
+    };
+  </script>
+</body>
+</html>
